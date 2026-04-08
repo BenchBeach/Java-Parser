@@ -9,6 +9,7 @@ from core.variables import ParameterInfo
 from parser.type_parser import parse_type_node
 from parser.body_parser import parse_method_body
 from parser.utils import query_captures
+from parser.javadoc_parser import extract_javadoc
 
 
 METHOD_QUERY = """
@@ -74,6 +75,7 @@ def _parse_single_method(node: Node, code: str) -> MethodInfo:
         local_variables=[],
         method_calls=[],
         is_constructor=False,
+        javadoc=extract_javadoc(node),
         span=_span(node),
         body_span=_span(body) if body else None,
     )
@@ -99,6 +101,7 @@ def _parse_single_constructor(node: Node, code: str) -> MethodInfo:
         local_variables=[],
         method_calls=[],
         is_constructor=True,
+        javadoc=extract_javadoc(node),
         span=_span(node),
         body_span=_span(body),
     )

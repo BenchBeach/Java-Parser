@@ -8,6 +8,22 @@ from core.variables import ParameterInfo, LocalVariableInfo
 
 
 @dataclass
+class ControlFlowInfo:
+    """控制流信息"""
+    if_count: int = 0
+    switch_count: int = 0
+    for_count: int = 0
+    while_count: int = 0
+    do_count: int = 0
+    try_count: int = 0
+    catch_count: int = 0
+    ternary_count: int = 0
+    logical_and_count: int = 0
+    logical_or_count: int = 0
+    field_accesses: List[str] = field(default_factory=list)
+
+
+@dataclass
 class MethodCallInfo:
     """
     表示一次方法调用。
@@ -113,8 +129,10 @@ class MethodInfo:
 
     local_variables: List[LocalVariableInfo] = field(default_factory=list)
     method_calls: List[MethodCallInfo] = field(default_factory=list)
+    control_flow: ControlFlowInfo = field(default_factory=ControlFlowInfo)
 
     is_constructor: bool = False
+    javadoc: Optional[dict] = None
 
     span: Optional[object] = None
     body_span: Optional[object] = None

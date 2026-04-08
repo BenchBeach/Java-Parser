@@ -100,6 +100,7 @@ class ClassInfo:
 
     modifiers: Set[str] = field(default_factory=set)
     annotations: List[str] = field(default_factory=list)
+    javadoc: Optional[dict] = None
 
     fields: Dict[str, FieldInfo] = field(default_factory=dict)
     methods: Dict[str, List[MethodInfo]] = field(default_factory=dict)

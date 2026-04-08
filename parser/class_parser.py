@@ -7,6 +7,7 @@ from tree_sitter import Node
 from core.clazz import ClassInfo
 from parser.field_parser import parse_fields
 from parser.method_parser import parse_methods
+from parser.javadoc_parser import extract_javadoc
 
 
 def parse_classes(root: Node, code: str) -> List[ClassInfo]:
@@ -44,6 +45,7 @@ def parse_single_class(node: Node, code: str, outer: Optional[ClassInfo], collec
         interface_names=interfaces,
         modifiers=set(modifiers),
         annotations=[],
+        javadoc=extract_javadoc(node),
         fields={},
         methods={},
         span=_span(node),
