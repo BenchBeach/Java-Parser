@@ -1,0 +1,29 @@
+filters:
+  getter_setter: true
+  test_utility: true
+  metric_based:
+    enabled: false
+    min_cyclomatic_complexity: 1
+    max_cyclomatic_complexity: 50
+    min_parameters: 0
+    max_parameters: 10
+  similarity:
+    enabled: false
+    threshold: 0.85
+  test_coverage:
+    enabled: false
+    require_tests: true
+    min_test_count: 1
+
+include_patterns:
+  - ".*"
+
+exclude_patterns:
+  - ".*Test$"
+  - ".*Mock$"
+  - ".*Stub$"
+
+exclude_methods:
+  - "toString"
+  - "hashCode"
+  - "equals"
